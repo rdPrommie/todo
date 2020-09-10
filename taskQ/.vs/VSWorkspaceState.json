@@ -1,0 +1,14 @@
+{
+  "ExpandedNodes": [
+    "",
+    "\\app",
+    "\\public",
+    "\\src",
+    "\\src\\Application",
+    "\\src\\Domain",
+    "\\src\\Domain\\User",
+    "\\tests"
+  ],
+  "SelectedNode": "\\public\\index_original.php",
+  "PreviewInSolutionExplorer": false
+}
