@@ -15,24 +15,18 @@ $settings($container);
 $connection = require __DIR__ . '/../app/connection.php';
 $connection($container);
 
-/*$table = "{$container->get('settings')['connection']['dbname']}.users";
-$columns = "ID INTEGER (11) NOT NULL AUTO_INCREMENT PRIMARY KEY, Name VARCHAR (55) NOT NULL, Email VARCHAR (55) NOT NULL";
-$container->get('connection')->exec("CREATE TABLE IF NOT EXISTS {$table} ({$columns})");
-
-$sql = "INSERT INTO db.`users` (name, email) VALUES ('Julies', 'julia@asdf.com')";
-
-if($container->get('connection')->exec($sql) === true) {
-    echo "DB connected cool";
-} else {
-    echo "ERROR: {$sql} - {$container->get('connection')->error}";
-}*/
-
 $logger = require __DIR__ . '/../app/logger.php';
 $logger($container);
+
+$createDatabase = require __DIR__ . '/../app/createDatabase.php';
+$createDatabase($container);
 
 AppFactory::setContainer($container);
 
 $app = AppFactory::create();
+
+$twigProcessor = require __DIR__ . '/../app/twigProcessor.php';
+$twigProcessor($container);
 
 $views = require __DIR__ . '/../app/views.php';
 $views($app);
@@ -44,3 +38,4 @@ $routes = require  __DIR__ . '/../app/routes.php';
 $routes($app);
 
 $app->run();
+

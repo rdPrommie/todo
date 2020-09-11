@@ -1,0 +1,24 @@
+<?php
+
+$errors = "";
+
+$db = mysqli_connect("localhost", "user", "secret", "db");
+
+if (isset($_POST['submit'])) {
+
+    if (empty($_POST['task'])) {
+        $errors = "You must fill in the task";
+    }else{
+        $task = $_POST['task'];
+        $query = "INSERT INTO tasks (task) VALUES ('$task')";
+        mysqli_query($db, $query);
+        header('location: index.php');
+    }
+}
+
+?>
+
+<form name="form" method="post" action="" class="input_form">
+    <input type="text" name="task" class="task_input">
+    <button type="submit" name="submit" id="add_btn" class="add_btn">Add Task</button>
+</form>

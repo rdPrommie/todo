@@ -1,0 +1,26 @@
+{% include 'header.html' %}
+
+<hr>
+
+<div id="task-main-div">
+    {% include 'form.phtml' %}
+
+
+    <table>
+        <thead>
+        <tr>
+            <th>#</th>
+            <th>Task</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        {% for key,task in tasks %}
+        <tr>
+            <td>{{ tasks[key]['id'] }}</td>
+            <td class="task"> {{ tasks[key]['text'] }}</td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>

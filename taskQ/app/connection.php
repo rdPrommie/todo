@@ -15,7 +15,7 @@ return function (Container $container) {
 
         try {
             $connection = new PDO("mysql:host={$host};dbname={$dbname}", $dbuser, $dbpass);
-            $connection->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            $connection->setAttribute(PDO::MYSQL_ATTR_USE_BUFFERED_QUERY, false);
         } catch(PDOException $e) {
             echo "Connection failed: " . $e->getMessage();
         }
