@@ -21,15 +21,3 @@ return function (App $app) {
 
     })->add($container->get('viewMiddleware'));
 };
-
-function arrayConverter(array &$array) {
-    $tasksArray = array();
-    for($i=0; $i<=sizeof($array)-1; $i++) {
-        $tasksArray['tasks'][$i] = array(
-            "id" => $array[$i]["ID"],
-            "text" => $array[$i]["Task"]
-        );
-    }
-   return $tasksArray;
-}
-

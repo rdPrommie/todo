@@ -22,29 +22,42 @@ class TestCase extends PHPUnit_TestCase
      */
     protected function getAppInstance(): App
     {
+
         // Instantiate PHP-DI ContainerBuilder
         $containerBuilder = new ContainerBuilder();
-
-        // Container intentionally not compiled for tests.
+        $container = $containerBuilder->build();
 
         // Set up settings
         $settings = require __DIR__ . '/../app/settings.php';
-        $settings($containerBuilder);
+        $settings($container);
 
-        // Build PHP-DI Container instance
-        $container = $containerBuilder->build();
+        $connection = require __DIR__ . '/../app/connection.php';
+        $connection($container);
+
+        $logger = require __DIR__ . '/../app/logger.php';
+        $logger($container);
+
+        $createDatabase = require __DIR__ . '/../app/createDatabase.php';
+        $createDatabase($container);
 
         // Instantiate the app-original
         AppFactory::setContainer($container);
         $app = AppFactory::create();
+
+        $twigProcessor = require __DIR__ . '/../app/twigProcessor.php';
+        $twigProcessor($container);
+
+        $view = require __DIR__ . '/../app/views.php';
+        $view($app);
 
         // Register middleware
         $middleware = require __DIR__ . '/../app/middleware.php';
         $middleware($app);
 
         // Register routes
-        $routes = require __DIR__ . '/../app/routes.php';
-        $routes($app);
+            $routes = require __DIR__ . '/../app/routes.php';
+            $routes($app);
+
 
         return $app;
     }

@@ -22,7 +22,7 @@ return function(Container $container) {
              'settings' => ['cache' => false],
          ],
          'connection' => [
-             'host' => 'db',
+             'host' => 'taskq_db_1',
              'dbname' => 'db',
              'dbuser' => 'user',
              'dbpass' => 'secret'
