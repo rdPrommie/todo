@@ -2,10 +2,6 @@
 
 use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
-use Psr\Http\Message\ResponseInterface;
-use Psr\Http\Message\ServerRequestInterface as RequestInterface;
-
-
 
 return function (App $app) {
     $container = $app->getContainer();
@@ -13,7 +9,7 @@ return function (App $app) {
     $app->group('/', function (RouteCollectorProxy $view) {
 
         $view->map(['GET', 'POST'], '', function($request, $response, $args) {
-            $tasks = array('error');
+            $tasks = array('');
             if($this->get('connection')) {
                 $query = $this->get('connection')->prepare("SELECT * FROM db.`tasks`");
                 $query->execute();

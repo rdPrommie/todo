@@ -7,7 +7,10 @@ use DI\Container;
 return function(Container $container) {
     if (isset($_POST['submit'])) {
 
-        if (!empty($_POST['task'])) {
+        if (empty($_POST['task'])) {
+            echo "You must fill the task field";
+        } else {
+
             $task = $_POST['task'];
             $query = "INSERT INTO db.`tasks` (task) VALUES ('$task')";
 
