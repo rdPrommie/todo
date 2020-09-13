@@ -6,7 +6,7 @@ use Slim\Routing\RouteCollectorProxy;
 return function (App $app) {
     $container = $app->getContainer();
 
-    $app->group('/', function (RouteCollectorProxy $view) {
+    $app->group('/index.php', function (RouteCollectorProxy $view) {
 
         $view->map(['GET', 'POST'], '', function($request, $response, $args) {
             $tasks = array('');

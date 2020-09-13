@@ -8,7 +8,7 @@ return function(Container $container) {
     if (isset($_POST['submit'])) {
 
         if (empty($_POST['task'])) {
-            echo "You must fill the task field";
+            $errors = "You must fill the task field";
         } else {
 
             $task = $_POST['task'];
