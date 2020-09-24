@@ -44,12 +44,6 @@ class TestCase extends PHPUnit_TestCase
         AppFactory::setContainer($container);
         $app = AppFactory::create();
 
-        $twigProcessor = require __DIR__ . '/../app/twigProcessor.php';
-        $twigProcessor($container);
-
-        $view = require __DIR__ . '/../app/views.php';
-        $view($app);
-
         // Register middleware
         $middleware = require __DIR__ . '/../app/middleware.php';
         $middleware($app);
